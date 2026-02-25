@@ -10,6 +10,7 @@ public class FelineTest {
     @Test
     public void eatMeatReturnsPredatorFood() throws Exception {
         Feline feline = new Feline();
+
         List<String> food = feline.eatMeat();
 
         assertEquals(List.of("Животные", "Птицы", "Рыба"), food);
@@ -30,10 +31,16 @@ public class FelineTest {
     }
 
     @Test
-    public void getKittensWithParamReturnsGivenNumber() {
+    public void getKittensWithParamReturnsFive() {
         Feline feline = new Feline();
 
         assertEquals(5, feline.getKittens(5));
+    }
+
+    @Test
+    public void getKittensWithParamReturnsZero() {
+        Feline feline = new Feline();
+
         assertEquals(0, feline.getKittens(0));
     }
 

@@ -27,25 +27,34 @@ public class LionTest {
     }
 
     @Test
-    public void getKittensCallsFelineMethodOnce() throws Exception {
+    public void getKittensCallsFelineGetKittensMethod() throws Exception {
         Feline mockFeline = mock(Feline.class);
         when(mockFeline.getKittens()).thenReturn(5);
 
         Lion lion = new Lion("Самка", mockFeline);
+        lion.getKittens();
 
-        assertEquals(5, lion.getKittens());
-        verify(mockFeline, times(1)).getKittens();
+        verify(mockFeline).getKittens();
     }
 
     @Test
-    public void getFoodReturnsFoodFromPredator() throws Exception {
+    public void getFoodReturnsValueFromFelineEatMeat() throws Exception {
         Feline mockFeline = mock(Feline.class);
-        when(mockFeline.eatMeat()).thenReturn(List.of("Животные", "Птицы"));
+        when(mockFeline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
 
         Lion lion = new Lion("Самец", mockFeline);
-        List<String> food = lion.getFood();
 
-        assertEquals(List.of("Животные", "Птицы"), food);
+        assertEquals(List.of("Животные", "Птицы", "Рыба"), lion.getFood());
+    }
+
+    @Test
+    public void getFoodCallsFelineEatMeatMethod() throws Exception {
+        Feline mockFeline = mock(Feline.class);
+        when(mockFeline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+
+        Lion lion = new Lion("Самец", mockFeline);
+        lion.getFood();
+
         verify(mockFeline).eatMeat();
     }
 }
